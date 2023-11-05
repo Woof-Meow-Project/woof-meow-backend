@@ -1,0 +1,1 @@
+{"version":3,"file":"pino-logger.module.js","sourceRoot":"","sources":["../../../src/pino-logger/pino-logger.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,+DAA0D;AAMnD,IAAM,gBAAgB,GAAtB,MAAM,gBAAgB;CAAI,CAAA;AAApB,4CAAgB;2BAAhB,gBAAgB;IAJ5B,IAAA,eAAM,EAAC;QACJ,SAAS,EAAE,CAAC,uCAAiB,CAAC;QAC9B,OAAO,EAAE,CAAC,uCAAiB,CAAC;KAC/B,CAAC;GACW,gBAAgB,CAAI"}
