@@ -1,2 +1,2 @@
-export const AuthCookieKeyJwtAccess = 'cookAccess'
-export const AuthCookieKeyJwtRefresh = 'cookRefresh'
+export const AuthCookieKeyJwtAccess = 'cookieAccess'
+export const AuthCookieKeyJwtRefresh = 'cookieRefresh'
