@@ -13,16 +13,6 @@ export class AppController {
     return this.appService.getWelcomeMessage();
   }
 
-  @Get('health')
-  getHealthStatus(): string {
-    return this.appService.getHealthStatus()
-  }
-
-  @Get('api/version')
-  getVersion(): string {
-    return this.appService.getVersion();
-  }
-
   @Get('exception')
   triggerException() {
     BaseHttpException.throw({

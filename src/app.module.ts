@@ -22,7 +22,7 @@ import { DatabaseService } from './database/database.service';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV || 'local'}`
+      envFilePath: [`./config/${process.env.NODE_ENV}.env`],
     }),
     PinoLoggerModule,
     TypeOrmModule.forRootAsync({

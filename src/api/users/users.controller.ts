@@ -1,23 +1,36 @@
-import { Body, Controller, Post, Req, Res } from '@nestjs/common'
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { TypedBody, TypedRoute } from "@nestia/core";
-import { ControllerSignupRoutePath } from './user.const';
+import { Body, Controller, Post, HttpException, HttpStatus } from '@nestjs/common'
+import { ApiOperation } from '@nestjs/swagger';
+import { IsEmail, IsString } from 'class-validator';
 
-@Controller(ControllerSignupRoutePath)
+class GoogleSignupDto {
+
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  name: string;
+
+  @IsString()
+  picture: string;
+}
+@Controller('users')
 export class UsersController {
   constructor(
-    private readonly usersService: UsersService
-  ) {
-  }
+  ) {}
 
-  @TypedRoute.Post('email')
-  async signupEmail(
-    @TypedBody() input: CreateUserDto,
+  @ApiOperation({ summary: '구글로 회원가입' })
+  @Post('signup/google')
+  public async signupGoogle(
+    @Body() body: GoogleSignupDto,
   ) {
-    // 유저 생성
-    await this.usersService.signupEmail(input);
-
-    // jwt 생성 및 쿠키에 저장
+    try {
+      return { success: true, message: '성공', data: {} };
+    } catch (error) {
+      // 에러 처리
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: error.message,
+      }, HttpStatus.BAD_REQUEST);
+    }
   }
 }

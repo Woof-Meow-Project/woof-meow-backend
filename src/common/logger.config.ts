@@ -26,7 +26,7 @@ export const loggerConfig = {
     exclude: [
         { path: '/api-docs/(.*)', method: RequestMethod.ALL },
         { path: '/api-docs', method: RequestMethod.ALL },
-        { path: 'api/version', method: RequestMethod.ALL },
+        { path: '/api/version', method: RequestMethod.ALL },
     ],
 }
 

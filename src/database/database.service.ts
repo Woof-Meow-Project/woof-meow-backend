@@ -13,22 +13,8 @@ export class DatabaseService {
     }
 
     getConnectionOptions(): TypeOrmModuleOptions {
-        const isLocal = this.configService.get<string>('NODE_ENV') === 'local';
-        this.logger.debug(`getConnectionOptions() : ${isLocal ? 'local' : 'production'}`);
 
-        if (isLocal) {
-            return {
-                type: 'mysql',
-                host: 'localhost',
-                port: 3306,
-                username: 'root',
-                password: '1234',
-                database: 'WoofMeow',
-                synchronize: true,
-                entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-                logging: true,
-            };
-        }
+        this.logger.debug('getConnectionOptions() : ' + this.configService.get<string>('NODE_ENV'));
         return {
             type: 'mysql',
             host: this.configService.get<string>('DATABASE_HOST'),
@@ -37,11 +23,12 @@ export class DatabaseService {
             password: this.configService.get<string>('DATABASE_PASSWORD'),
             database: this.configService.get<string>('DATABASE_NAME'),
             entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+            logging: true,
         };
+
     }
 
     async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
-        this.logger.debug('createTypeOrmOptions()');
         return this.getConnectionOptions();
     }
 }
