@@ -1,6 +1,6 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import { PinoLogger } from "nestjs-pino";
-import { loggerConfig } from "../common/logger.config";
+import { loggerConfig } from "../configs/logger.config";
 @Injectable()
 export class PinoLoggerService implements LoggerService {
     private readonly logger = new PinoLogger(loggerConfig);

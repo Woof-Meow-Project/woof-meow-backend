@@ -1,28 +1,19 @@
 import { Injectable } from '@nestjs/common';
+import { DatabaseConfigService } from './configs/database-config.service';
+import { AppConfigService, NodeEnvironment } from './configs/app-config.service';
 import { PinoLoggerService } from './pino-logger/pino-logger.service';
-import { DatabaseConfigService } from './database-config/database-config.service';
-import { EnvConfigService } from './env-config/env-config.service';
 
 @Injectable()
 export class AppService {
-    private readonly logger: PinoLoggerService;
-    private readonly databaseConfigService: DatabaseConfigService;
-    private readonly envConfigService: EnvConfigService;
+    public appConfigService: AppConfigService;
+    public logger: PinoLoggerService;
+    public databaseConfigService: DatabaseConfigService;
 
     constructor() {
         this.logger = new PinoLoggerService();
         this.logger.setContext(this.constructor.name);
     }
-
     getWelcomeMessage(): string {
-        return 'Welcome to our API!';
-    }
-
-    getDatabaseConfig() {
-        return this.databaseConfigService;
-    }
-
-    getEnvConfig() {
-        return this.envConfigService;
+        return 'Welcome to our API!!!!!';
     }
 }
