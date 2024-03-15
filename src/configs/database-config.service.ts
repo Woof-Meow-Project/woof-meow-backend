@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { AbstractConfigService } from '@nestjs-library/config';
 import { Expose, Transform, Type } from 'class-transformer';
-import { IsInt, IsNotEmpty, IsPositive, IsString } from 'class-validator';
+import { IsNotEmpty, IsPositive, IsString } from 'class-validator';
+import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
 @Injectable()
-export class DatabaseConfigService extends AbstractConfigService<DatabaseConfigService> {
+export class DatabaseConfigService extends AbstractConfigService<DatabaseConfigService> implements MysqlConnectionOptions {
+    type = 'mysql' as const;
 
     @Expose({ name: 'DATABASE_HOST' })
     @Transform(({ value }) => value ?? 'localhost')
@@ -35,11 +37,4 @@ export class DatabaseConfigService extends AbstractConfigService<DatabaseConfigS
     @IsString()
     @IsNotEmpty()
     database: string;
-
-    // @Expose({ name: 'RETRY_ATTEMPTS' })
-    // @IsInt()
-    // @Type(() => Number)
-    // @Transform(({ value }) => value ?? 4)
-    // @IsPositive()
-    // retryAttempts: number;
 }
