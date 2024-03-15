@@ -15,6 +15,12 @@ import { PinoLoggerModule } from './pino-logger/pino-logger.module';
     ConfigModule.forFeature(AppConfigService),
     PinoLoggerModule,
     ConfigModule.forFeature(DatabaseConfigService),
+    TypeOrmModule.forRootAsync({
+      name: 'mysqlConnection',
+      imports: [ConfigModule.forFeature(DatabaseConfigService)],
+      useFactory: (configService: DatabaseConfigService) => configService,
+      inject: [DatabaseConfigService],
+    }),
   ],
   controllers: [AppController],
   providers: [
