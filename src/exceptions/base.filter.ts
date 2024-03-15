@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
-import { PinoLoggerService as Logger } from '../pino-logger/pino-logger.service';
+// import { PinoLoggerService as Logger } from '../pino-logger/pino-logger.service';
 import { BaseHttpException } from './http-exceptions/base.http-exception';
 
 export type classAndFunction = { class: string, function: string };
@@ -11,7 +11,7 @@ export const UNKNOWN_MESSAGE = 'unknown';
  */
 @Catch()
 export class BaseExceptionFilter implements ExceptionFilter {
-  constructor(private readonly logger: Logger) { }
+  constructor() { }
 
   catch(exception: BaseHttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -62,17 +62,17 @@ export class BaseExceptionFilter implements ExceptionFilter {
         sourceFunction = UNKNOWN_MESSAGE;
       }
     }
-    this.logger.setContext(`${sourceClass} ${sourceFunction}`);
+    // this.logger.setContext(`${sourceClass} ${sourceFunction}`);
 
     let errorMessageWithInfo = errorMessage;
     if (exception.info) {
       errorMessageWithInfo += `\n${JSON.stringify(exception.info)}`;
     }
 
-    this.logger.error(
-      `${errorMessageWithInfo}${stackInfo}`,
-      exception.stack,
-    );
+    // this.logger.error(
+    //   `${errorMessageWithInfo}${stackInfo}`,
+    //   exception.stack,
+    // );
 
     response.status(status).send({
       statusCode: status,
