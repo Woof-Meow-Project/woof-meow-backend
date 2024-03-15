@@ -7,6 +7,7 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
 @Injectable()
 export class DatabaseConfigService extends AbstractConfigService<DatabaseConfigService> implements MysqlConnectionOptions {
     type = 'mysql' as const;
+    // autoLoadEntities = true as const;
 
     @Expose({ name: 'DATABASE_HOST' })
     @Transform(({ value }) => value ?? 'localhost')
