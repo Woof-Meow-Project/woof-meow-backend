@@ -11,17 +11,16 @@ async function bootstrap() {
   pinoLogger.setContext('Bootstrap');
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({ trustProxy: true }),
+    new FastifyAdapter({ trustProxy: true, connectionTimeout: 3000 }),
     { logger: pinoLogger, snapshot: true },
   );
   const appConfigService = app.get(AppConfigService)
 
   try {
     const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('WoofMeow API docs')
+    .setDescription('The WoofMeow API description')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup(appConfigService.swaggerPath, app, document);
