@@ -19,7 +19,8 @@
       "test:e2e": "jest --config ./test/jest-e2e.json",
       "prepare": "ts-patch install",
       "local-mysql-up": "MYSQL_PORT=3306 docker-compose -f ./docker/docker-compose.local.yml -p woof-meow-db up -d",
-      "local-mysql-down": "MYSQL_PORT=3306 docker-compose -f ./docker/docker-compose.local.yml -p woof-meow-db down"
+      "local-mysql-down": "MYSQL_PORT=3306 docker-compose -f ./docker/docker-compose.local.yml -p woof-meow-db down",
+      "typeorm": "typeorm-ts-node-commonjs"
    },
    "dependencies": {
       "@fastify/compress": "^6.5.0",
