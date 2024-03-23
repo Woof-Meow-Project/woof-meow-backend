@@ -33,7 +33,7 @@ pnpm install
 
 ```bash
 # local 에서 개발 시,
-$ pnpm start
+$ pnpm run start
 
 
 # production mode
