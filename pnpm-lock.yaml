@@ -50,6 +50,9 @@ dependencies:
   class-validator:
     specifier: ^0.14.0
     version: 0.14.1
+  dotenv:
+    specifier: ^16.4.5
+    version: 16.4.5
   dotenv-flow:
     specifier: ^4.0.0
     version: 4.1.0
