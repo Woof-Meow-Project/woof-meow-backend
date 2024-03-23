@@ -14,14 +14,14 @@ async function bootstrap() {
     new FastifyAdapter({ trustProxy: true, connectionTimeout: 3000 }),
     { logger: pinoLogger, snapshot: true },
   );
-  const appConfigService = app.get(AppConfigService)
+  const appConfigService = app.get(AppConfigService);
 
   try {
     const config = new DocumentBuilder()
-    .setTitle('WoofMeow API docs')
-    .setDescription('The WoofMeow API description')
-    .setVersion('1.0')
-    .build();
+      .setTitle('WoofMeow API docs')
+      .setDescription('The WoofMeow API description')
+      .setVersion('1.0')
+      .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup(appConfigService.swaggerPath, app, document);
 
